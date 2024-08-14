@@ -15,7 +15,7 @@ function App() {
     setitems([...items, text])
     setText("")
     
-  }
+  } 
 
   function deleteItem(id) {
     setitems(items => {return items.filter((item, index) =>{
