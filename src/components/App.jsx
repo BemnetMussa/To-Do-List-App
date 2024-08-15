@@ -1,19 +1,15 @@
 import React, { useState } from "react";
 import ToDoItems from "./ToDoItems"
+import Input from "./Input";
 
 
 function App() {
-  const [text, setText]  = useState("");
   const [items, setitems] = useState([]);
 
-  function inputText(e) {
-    const value = e.target.value;
-    setText(value)
-  }
-
-  function addItem(){
+  function addItem(text){
+    console.log(text)
     setitems([...items, text])
-    setText("")
+ 
     
   } 
 
@@ -21,8 +17,6 @@ function App() {
     setitems(items => {return items.filter((item, index) =>{
       return index !== id
     })})
-
-    console.log(id)
   }
 
   return (
@@ -30,13 +24,7 @@ function App() {
       <div className="heading">
         <h1>To-Do List</h1>
       </div>
-      <div className="form">
-        <input value={text} onChange={inputText} onKeyDown={e => {if (e.key === "Enter") { addItem() }}} type="text" />
-   
-        <button onClick={addItem}>
-          <span>Add</span>
-        </button>
-      </div>
+        <Input onAdd={addItem} />
       <div>
         <ul>
           {items.map((todo, index) => {
